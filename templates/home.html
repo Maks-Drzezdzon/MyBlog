@@ -1,10 +1,15 @@
-
 {% extends "layout.html" %}
 {% block content %}
-	{% for post in messages %}
-	<h1>{{ post.title }}</h1>
-		<p>By {{ post.author }} on {{ post.date_posted }}</p>
-		<p>{{ post.content }}</p>
-		
-	{% endfor %}
-{% endblock content%}
+    {% for post in messages %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ post.author }}</a>
+              <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2> <!-- replace hamburgers-->
+            <p class="article-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic dolores quidem laboriosam saepe fugit, ut aut! Sit quaerat harum mollitia rem itaque, quia dolore dolores sed ea, neque, doloribus necessitatibus!{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
