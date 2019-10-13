@@ -20,11 +20,11 @@ messages = [
 @app.route("/")
 @app.route("/home")
 def hello():
-	return render_template('home.html')
+	return render_template('home.html', messages = messages)
 
 @app.route("/about")
 def about():
-	return render_template("about.html")
+	return render_template("about.html", title='About')
 
 if __name__ == "__main__":
     # allows you to dynamically update site like in angular

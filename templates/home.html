@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>home</title>
-</head>
-<body>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium sed odit sit aperiam, necessitatibus enim reiciendis voluptatibus quisquam maiores omnis dignissimos facilis, earum nostrum fugiat? Pariatur aliquid voluptas modi dignissimos.</p>
-</body>
-</html>
+
+{% extends "layout.html" %}
+{% block content %}
+	{% for post in messages %}
+	<h1>{{ post.title }}</h1>
+		<p>By {{ post.author }} on {{ post.date_posted }}</p>
+		<p>{{ post.content }}</p>
+		
+	{% endfor %}
+{% endblock content%}
