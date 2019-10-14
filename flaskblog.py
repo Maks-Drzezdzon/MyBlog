@@ -46,7 +46,7 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Oops.. please check user credentials', 'danger')
-    return render_template('login.html', title='Register', form=form)
+    return render_template('login.html', title='Login', form=form)
 
 if __name__ == "__main__":
     # allows you to dynamically update site like in angular
