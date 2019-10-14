@@ -3,7 +3,7 @@ from flask import render_template
 import os
 app = Flask(__name__)
 
-# https://www.youtube.com/watch?v=MwZwr5Tvyxo
+
 messages = [
                 {'author':'name',
                  'title':'filler title',
