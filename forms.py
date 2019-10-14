@@ -8,20 +8,20 @@ class RegistrationForm(FlaskForm):
 		# import validators for checking
 	
 	email = StringField('Email',
-		validators=[DataRequired[], Email()])
+		validators=[DataRequired(), Email()])
 
-	password = PasswordField('Password', 
+	password = PasswordField('Password',
 		validators=[DataRequired()])
-
-	confirm_pass = PasswordField('Confirm Password', 
-		validators=[DataRequired(), EqualTo('password')])	
+    
+	confirm_pass = PasswordField('Confirm Password',
+		validators=[DataRequired(), EqualTo('password')])
 
 	submit_button = SubmitField('Sign up')
 
 
 class LoginForm(FlaskForm):	
 	email = StringField('Email',
-		validators=[DataRequired[], Email()])
+		validators=[DataRequired(), Email()])
 
 	password = PasswordField('Password', 
 		validators=[DataRequired()])
@@ -29,3 +29,4 @@ class LoginForm(FlaskForm):
 	remeber = BooleanField('Remember me')
 
 	submit_button = SubmitField('Login')
+    

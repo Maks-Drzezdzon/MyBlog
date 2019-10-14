@@ -31,11 +31,11 @@ def about():
 def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
-
+'''
 @app.route("/login")
 def login():
     login = LoginForm()
-    return render_template('login.html', title='Register', form=form)
+    return render_template('login.html', title='Register', form=form)'''
 
 if __name__ == "__main__":
     # allows you to dynamically update site like in angular
