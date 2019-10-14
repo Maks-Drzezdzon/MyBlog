@@ -3,7 +3,7 @@ from forms import RegistrationForm, LoginForm
 import os
 app = Flask(__name__)
 
-app.config['SECRET'] = 'f9779cdd2a5db77c179c4174564e0a5f'
+app.config['SECRET_KEY'] = 'f9779cdd2a5db77c179c4174564e0a5f'
 
 messages = [
                 {'author':'name',
@@ -31,11 +31,12 @@ def about():
 def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
-'''
+
+
 @app.route("/login")
 def login():
-    login = LoginForm()
-    return render_template('login.html', title='Register', form=form)'''
+    form = LoginForm()
+    return render_template('login.html', title='Register', form=form)
 
 if __name__ == "__main__":
     # allows you to dynamically update site like in angular

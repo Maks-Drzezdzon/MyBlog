@@ -21,7 +21,7 @@
 				</div>
 			</fieldset>
 			<div class="form-group">
-				{{ form.submit(class="btn btn-outline-info") }}
+				{{ form.submit_button(class="btn btn-outline-info") }}
 			</div>
 			
 		</form>
@@ -30,7 +30,7 @@
 	<div class="border-top pt-3">
 		<small class="text-mutaed">
 			<!-- pass in function name login not mapping -->
-			Already Signed up? <a href="{{ url_for('login') }}" class="ml-2"></a>
+			Already Signed up? <a href="{{ url_for('login') }}" class="ml-2">Sign in</a>
 		</small>
 	</div>
 
