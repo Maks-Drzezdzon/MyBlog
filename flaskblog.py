@@ -1,4 +1,4 @@
-from flask import Flask,render_template, url_for
+from flask import Flask,render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 import os
 app = Flask(__name__)
@@ -20,16 +20,20 @@ messages = [
 
 @app.route("/")
 @app.route("/home")
-def hello():
+def home():
 	return render_template('home.html', messages = messages)
 
 @app.route("/about")
 def about():
 	return render_template("about.html", title='About')
 
-@app.route("/register")
+@app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Signed up {form.username.data}', 'success')
+        # name of method not mapping
+        return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
 
