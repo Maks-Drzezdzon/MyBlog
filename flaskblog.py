@@ -37,9 +37,15 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'pass':
+            flash('logged in as admin', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Oops.. please check user credentials', 'danger')
     return render_template('login.html', title='Register', form=form)
 
 if __name__ == "__main__":
