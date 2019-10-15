@@ -1,9 +1,32 @@
 from flask import Flask,render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
-import os
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'f9779cdd2a5db77c179c4174564e0a5f'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True,nullable=False)
+    email = db.Column(db.String(100), unique=True,nullable=False)
+    image_file = db.Column(db.String(20), unique=True,default='default.jpg')
+    password = db.Column(db.String(50), nullable=False)
+    
+    def __repr__(self):
+        return f"User( '{self.username}', '{self.email}', '{self.image_file}')"
+    
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    
+    def __repr__(self):
+        return f"User( '{self.title}', '{self.date_posted}'"
 
 messages = [
                 {'author':'name',
