@@ -10,13 +10,15 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True,nullable=False)
-    email = db.Column(db.String(100), unique=True,nullable=False)
-    image_file = db.Column(db.String(20), unique=True,default='default.jpg')
-    password = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    password = db.Column(db.String(60), nullable=False)
+    # ref method so its capital
+    posts = db.relationship('Post', backref='author', lazy=True)
     
     def __repr__(self):
-        return f"User( '{self.username}', '{self.email}', '{self.image_file}')"
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
     
 
 class Post(db.Model):
@@ -24,9 +26,12 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
+    # ref table name and field so its lower case
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     def __repr__(self):
-        return f"User( '{self.title}', '{self.date_posted}'"
+        return f"Post('{self.title}', '{self.date_posted}')"
+    
 
 messages = [
                 {'author':'name',
