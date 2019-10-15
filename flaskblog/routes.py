@@ -33,7 +33,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_pass)
         db.session.add(user)
         db.session.commit()
-        flash(f'Signed up successfully', 'success')
+        flash(f'Signed up successfully !', 'success')
         # name of method not mapping
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
