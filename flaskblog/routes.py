@@ -134,16 +134,7 @@ def update_post(post_id):
         form.content.data = post.content
     return render_template('create_post.html', title='Update post', form=form, legend='Update Post')
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return render_template('500.html'), 500
-
-
-@app.route("/user/<str:username>")
+@app.route("/user/<string:username>")
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
@@ -151,3 +142,11 @@ def user_posts(username):
     .order_by(Post.date_posted.desc())\
     .paginate(page=page, per_page = 5)
     return render_template('user_posts.html', posts=posts, user=user)
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
