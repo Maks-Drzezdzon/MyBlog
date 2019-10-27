@@ -132,3 +132,11 @@ def update_post(post_id):
         form.title.data= post.title
         form.content.data = post.content
     return render_template('create_post.html', title='Update post', form=form, legend='Update Post')
+
+@app.errorhandler(404):
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500):
+def not_found_error(error):
+    return render_template('500.html'), 500
