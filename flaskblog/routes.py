@@ -154,11 +154,20 @@ def not_found_error(error):
 def internal_error(error):
     return render_template('500.html'), 500
 
+def send_reset_email(user):
+    # im dead its been a long day
+    pass
+
 @app.route("/reset_password",  methods=['GET', 'POST'])
 def reset_password():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent to reset your password', 'info')
+        return redirect(url_for('login'))
     return render_template('reset_request.html', title='Reset password', form=form)
 
 @app.route("/reset_password/<token>",  methods=['GET', 'POST'])
